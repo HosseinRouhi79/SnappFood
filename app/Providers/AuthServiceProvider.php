@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Enums\UserType;
+use App\Models\Food;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -41,6 +42,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('sellerComplete',function (User $user){
           return  DB::table('restaurants')->where('user_id', $user->id)->exists();
+        });
+
+        Gate::define('seeFoods',function (User $user, Restaurant $restaurant){
+            return $user->id === $restaurant->user_id;
         });
 
     }

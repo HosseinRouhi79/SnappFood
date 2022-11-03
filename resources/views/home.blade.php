@@ -36,7 +36,7 @@
                                     <a href="{{route('sellerForm')}}"
                                        class="list-group-item list-group-item-action text-center">
                                         Complete the information</a>
-                                    <a href="{{route('sellerProfile')}}"
+                                    <a href="/seller/profile"
                                        class="list-group-item list-group-item-action text-center">
                                         Profile</a>
                                 </div>

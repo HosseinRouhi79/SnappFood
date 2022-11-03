@@ -6,6 +6,7 @@ session_start();
 use App\Http\Controllers\Controller;
 use App\Models\FoodType;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
@@ -41,6 +42,13 @@ class SellerController extends Controller
         $restaurant->user_id = Auth::id();
         $_SESSION['user_id'] = Auth::id();
         $restaurant->save();
+    }
+
+    public function setting($slug)
+    {
+        $user = Auth::user();
+        $foods = DB::table('food')->where('restaurant_id',$slug)->get();
+        return view('seller.showFoods',compact('foods','user'));
     }
 }
 

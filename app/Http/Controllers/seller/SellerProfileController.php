@@ -5,6 +5,7 @@ namespace App\Http\Controllers\seller;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\FoodType;
+use App\Models\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,7 @@ class SellerProfileController extends Controller
         if (! Gate::allows('sellerComplete')) {
             abort(403);
         }
+
         return view('seller.sellerProfile',compact('user'));
     }
 
