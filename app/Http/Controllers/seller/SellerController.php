@@ -4,6 +4,7 @@ namespace App\Http\Controllers\seller;
 session_start();
 
 use App\Http\Controllers\Controller;
+use App\Models\FoodType;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\Response;
@@ -12,14 +13,8 @@ use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
-    public function index()
-    {
-        $user = Auth::user();
-        if (! Gate::allows('sellerComplete')) {
-            abort(403);
-        }
-        return view('seller.sellerProfile',compact('user'));
-    }
+
+
 
 
     public function store(Request $request)
