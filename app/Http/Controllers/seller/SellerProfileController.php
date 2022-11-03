@@ -21,11 +21,11 @@ class SellerProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if (! Gate::allows('sellerComplete')) {
+        if (!Gate::allows('sellerComplete')) {
             abort(403);
         }
 
-        return view('seller.sellerProfile',compact('user'));
+        return view('seller.sellerProfile', compact('user'));
     }
 
     /**
@@ -36,33 +36,33 @@ class SellerProfileController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $foods = FoodType::query()->where('restaurant_type_id',$user->restaurant->restaurant_type_id)->get();
-        if (! Gate::allows('sellerComplete')) {
+        $foods = FoodType::query()->where('restaurant_type_id', $user->restaurant->restaurant_type_id)->get();
+        if (!Gate::allows('sellerComplete')) {
             abort(403);
         }
-        return view('seller.sellerFood',compact('user','foods'));
+        return view('seller.sellerFood', compact('user', 'foods'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'price'=>'required',
-            'food_type'=>'required',
-            'image'=>'required|mimes:img,jpg,jpeg'
+            'name' => 'required',
+            'price' => 'required',
+            'food_type' => 'required',
+            'image' => 'required|mimes:img,jpg,jpeg'
         ]);
 
         $user = Auth::user();
 
         $now = Carbon::now()->format('d-m-Y');
-        $imageName = $now.uniqid().'.'.$request->image->extension();
-        $request->image->move(public_path('uploads'),$imageName);
+        $imageName = $now . uniqid() . '.' . $request->image->extension();
+        $request->image->move(public_path('uploads'), $imageName);
 
         $food = new Food();
         $food->name = $request->input('name');
@@ -80,7 +80,7 @@ class SellerProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -91,34 +91,62 @@ class SellerProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        //
+        $food = Food::find($id);
+        $user = Auth::user();
+        $foods = FoodType::query()->where('restaurant_type_id', $user->restaurant->restaurant_type_id)->get();
+        if (!Gate::allows('sellerComplete')) {
+            abort(403);
+        }
+        return view('seller.sellerFoodEdit', compact('user', 'foods', 'food'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'food_type' => 'required',
+        ]);
+        $user = Auth::user();
+
+        $now = Carbon::now()->format('d-m-Y');
+        $imageName = $now . uniqid() . '.' . $request->image->extension();
+        $request->image->move(public_path('uploads'), $imageName);
+        $food = Food::find($id);
+        unlink(public_path("uploads/$food->image"));
+        $food->name = $request->input('name');
+        $food->price = $request->input('price');
+        $food->restaurant_id = $user->restaurant->id;
+        $food->recipe = $request->input('recipe');
+        $food->discount = $request->input('discount');
+        $food->food_type_id = $request->input('food_type');
+        $food->image = $imageName;
+
+        $food->save();
+        return redirect('/seller/profile');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        $food = Food::find($id);
+        $food->delete();
+        return redirect('/seller/profile');
     }
 }
