@@ -12,7 +12,7 @@
     @endif
     <div class="container">
         <div class="row justify-content-center">
-            <h3 id="error"></h3>
+            <h3 id="error" style="color: red"></h3>
             <div class="col-md-8 col- text-center mt-1.5">
                 <form id="form_id" method="post" action="/seller" enctype="multipart/form-data">
                     @csrf
@@ -28,20 +28,12 @@
                             <label for="address">Address</label>
                         </div><input type="text" class="form-control mb-3" name="address" id="address" placeholder="Enter restaurant phone">
 
-                        <select class="form-select mt-4 mb-3" aria-label="Default select example" name="restaurant_type">
+                        <select id="restaurant_type" class="form-select mt-4 mb-3" aria-label="Default select example" name="restaurant_type">
                             <option style="color: black;background-color: #edf2f7" selected>Select Restaurant Type</option>
                             @foreach($restaurants as $restaurant)
                                 <option style="color: black;background-color: #edf2f7" value="{{$restaurant->id}}">{{$restaurant->name}}</option>
                             @endforeach
                         </select>
-                        <div class="text-start">
-                            <label for="image">Image</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="mb-3">
-                                <input class="form-control form-control-sm" name="image" id="formFileSm" type="file">
-                            </div>
-                        </div>
                         <div id="map" style="width: 400px; height: 250px; background: #eee; border: 2px solid #aaa;"></div>
                         <button type="submit" class="btn btn-success mt-4">Submit</button>
 
@@ -83,15 +75,20 @@
                                         url: "http://localhost:8000/seller",
                                         data: {
                                             location: JSON.stringify(loc),
+                                            name: $("#name").val(),
+                                            phone: $("#phone").val(),
+                                            address: $("#address").val(),
+                                            restaurant_type: $("#restaurant_type").val(),
 
                                             _token: '{{csrf_token()}}'
                                         },
                                         cache: false,
                                         success: function (data) {
-                                            window.location.replace("http://www.w3schools.com");
+                                            window.location.replace("http://localhost:8000/seller/profile");
                                         },
                                         error: function (xhr, status, error) {
                                             var errors = JSON.parse(xhr.responseText);
+                                            // console.log(errors)
                                             $('#error').html(errors.message)
                                         }
                                     })
