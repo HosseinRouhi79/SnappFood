@@ -36,9 +36,9 @@
                                     <a href="{{route('sellerForm')}}"
                                        class="list-group-item list-group-item-action text-center">
                                         Complete the information</a>
-                                    <a href="/admin/foodType"
+                                    <a href="{{route('sellerProfile')}}"
                                        class="list-group-item list-group-item-action text-center">
-                                        Setting</a>
+                                        Profile</a>
                                 </div>
                             </div>
                         @endcan

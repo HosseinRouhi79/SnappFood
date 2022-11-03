@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [\App\Http\Controllers\FirstPageController::class, 'index'])->name('admin');
 Route::get('/seller', [\App\Http\Controllers\FirstPageController::class, 'sellerForm'])->name('sellerForm');
-Route::get('/seller/profile',[\App\Http\Controllers\seller\SellerController::class,'index'])->middleware('can:isSeller');
+Route::get('/seller/profile',[\App\Http\Controllers\seller\SellerController::class,'index'])->middleware('can:isSeller')->name('sellerProfile');
 Route::post('/seller', [\App\Http\Controllers\seller\SellerController::class, 'store']);
 Route::resource('/admin/restaurantType',\App\Http\Controllers\admin\RestaurantTypeController::class);
 Route::resource('/admin/foodType',\App\Http\Controllers\admin\FoodTypeController::class);

@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\seller;
+session_start();
 
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +14,11 @@ class SellerController extends Controller
 {
     public function index()
     {
-        return view('seller.sellerProfile');
+        $user = Auth::user();
+        if (! Gate::allows('sellerComplete')) {
+            abort(403);
+        }
+        return view('seller.sellerProfile',compact('user'));
     }
 
 
@@ -37,6 +44,7 @@ class SellerController extends Controller
         $restaurant->restaurant_type_id = $data['restaurant_type'];
         $restaurant->latlng = $data['location'];
         $restaurant->user_id = Auth::id();
+        $_SESSION['user_id'] = Auth::id();
         $restaurant->save();
     }
 }
