@@ -15,9 +15,9 @@ class SellerController extends Controller
 //           'email'=>'required'
 //        ]);
 //        return response()->json($validator->errors()->all());
-        return response()->json([]);
+//        return response()->json([]);
 
-//        dd($_POST['location']);
+        dd($_POST['location']);
 //
 //        $restaurant = new Restaurant();
 //        $restaurant->name = $request->input('name');

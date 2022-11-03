@@ -60,7 +60,7 @@
                                 var marker = L.marker([35.699739, 51.398097]).addTo(map);
 
 
-                                marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+                                marker.bindPopup("<b>SnappFood!</b><br>You Are Here.").openPopup();
 
                                 // function onMapClick(e) {
                                 //     alert("You clicked the map at " + e.latlng);
@@ -83,6 +83,7 @@
                                         url: "http://localhost:8000/seller",
                                         data: {
                                             location: JSON.stringify(loc),
+
                                             _token: '{{csrf_token()}}'
                                         },
                                         cache: false,
