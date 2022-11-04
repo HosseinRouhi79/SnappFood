@@ -57,6 +57,7 @@ class FoodTypeController extends Controller
         $request->image->move(public_path('uploads'),$imageName);
         $food = new \App\Models\FoodType();
         $food->name = $request->input('name');
+        $food->discount = $request->input('discount');
         $food->restaurant_type_id = $request->input('restaurant_type_id');
         $food->image = $imageName;
         $food->save();
@@ -109,6 +110,7 @@ class FoodTypeController extends Controller
         $food = \App\Models\FoodType::find($id);
         unlink(public_path("uploads/$food->image"));
         $food->name = $request->input('name');
+        $food->discount = $request->input('discount');
         $food->restaurant_type_id = $request->input('restaurant_type_id_edit');
         $food->image = $imageName;
         $food->save();

@@ -20,6 +20,7 @@
                     <div class="form-group mt-2">
                         <label for="name" class="p-2"><strong>Food Category</strong></label>
                         <input value="{{$food->name}}" style="color: black;background-color: #edf2f7" type="text" class="form-control" name="name" id="name" placeholder="Category...">
+                        <input style="color: black;background-color: #edf2f7" type="text" class="form-control mt-4" name="discount" id="discount" placeholder="Discount...">
                         <select class="form-select mt-4 mb-3" aria-label="Default select example" name="restaurant_type_id_edit">
                             <option selected value="{{$food->restaurant_type_id}}">Select Restaurant Category</option>
                             @foreach($restaurants as $restaurant)
