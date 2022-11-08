@@ -19,5 +19,8 @@ trait HttpResponse{
             'data'=>$data
         ],$code);
     }
+
+
+
 }
 ?>
