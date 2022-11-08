@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FoodAdminRequest;
 use App\Models\FoodType;
 use App\Models\RestaurantType;
 use Carbon\Carbon;
@@ -44,13 +45,8 @@ class FoodTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(FoodAdminRequest $request)
     {
-        $request->validate([
-           'image'=>'required|mimes:img,jpg,jpeg',
-           'name' => 'required'
-        ]);
-
 
         $now = Carbon::now()->format('d-m-Y');
         $imageName = $now.uniqid().'.'.$request->image->extension();
@@ -96,13 +92,8 @@ class FoodTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(FoodAdminRequest $request, $id)
     {
-
-        $request->validate([
-            'image'=>'required|mimes:img,jpg,jpeg',
-            'name' => 'required'
-        ]);
 
         $now = Carbon::now()->format('d-m-Y');
         $imageName = $now.uniqid().'.'. $request->image->extension();
