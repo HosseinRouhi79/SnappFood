@@ -32,4 +32,25 @@ class CustomerAddressController extends Controller
         ]);
         return $this->success($address,'your address is added successfully');
     }
+
+    public function setActive($id)
+    {
+
+        $address = Address::where('id',$id)->first();
+
+        if(Auth::id() !== $address->user_id){
+            return $this->error('','unauthorized action',401);
+        }
+
+        $addresses = Address::where('user_id',Auth::id())->get();
+        foreach ($addresses as $item) {
+            $item->is_active = 0;
+            $item->save();
+        }
+
+        $address->is_active = 1;
+        $address->save();
+        return $this->success($address,'current address updated successfully');
+    }
+
 }
