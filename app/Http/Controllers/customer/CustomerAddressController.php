@@ -16,4 +16,9 @@ class CustomerAddressController extends Controller
             Address::where('user_id',Auth::id())->get()
         );
     }
+
+    public function makeAddreses()
+    {
+
+    }
 }

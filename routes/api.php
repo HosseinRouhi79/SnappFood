@@ -25,4 +25,5 @@ Route::post('customer/login',[\App\Http\Controllers\customer\CustomerAuthControl
 //private
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('customer/addresses',[\App\Http\Controllers\customer\CustomerAddressController::class,'getAllAddresses']);
+    Route::post('customer/addresses',[\App\Http\Controllers\customer\CustomerAddressController::class,'makeAddresses']);
 });
