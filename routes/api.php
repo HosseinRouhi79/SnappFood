@@ -27,4 +27,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('customer/addresses',[\App\Http\Controllers\customer\CustomerAddressController::class,'getAllAddresses']);
     Route::post('customer/addresses',[\App\Http\Controllers\customer\CustomerAddressController::class,'makeAddresses']);
     Route::patch('customer/addresses/{id}',[\App\Http\Controllers\customer\CustomerAddressController::class,'setActive']);
+    Route::patch('customer/update',[\App\Http\Controllers\customer\CustomerUpdateController::class,'updatePersonal']);
 });
