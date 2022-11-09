@@ -51,4 +51,12 @@ class User extends Authenticatable
             return $this->hasOne(Restaurant::class);
         }
     }
+
+    public function address()
+    {
+        if($this->role == UserType::Customer){
+
+            return $this->hasMany(Address::class);
+        }
+    }
 }
