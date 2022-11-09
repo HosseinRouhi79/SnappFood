@@ -16,5 +16,10 @@ class RestaurantType extends Model
         return $this->hasMany(FoodType::class);
     }
 
+    public function Restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
     use HasFactory;
 }
