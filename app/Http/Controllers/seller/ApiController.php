@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\seller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DaysResource;
+use App\Http\Resources\FoodResource;
 use App\Http\Resources\RestaurantResource;
 use App\Models\Restaurant;
 use App\Trait\HttpResponse;
@@ -13,7 +15,7 @@ class ApiController extends Controller
     use HttpResponse;
     public function getRestaurantInfo($id)
     {
-        return RestaurantResource::collection(
+        return DaysResource::collection(
             Restaurant::where('id',$id)->get()
         );
     }
@@ -22,6 +24,13 @@ class ApiController extends Controller
     {
         return RestaurantResource::collection(
          Restaurant::all()
+        );
+    }
+
+    public function getFoodsOfRestaurant($id)
+    {
+       return FoodResource::collection(
+         Restaurant::where('id',$id)->get()
         );
     }
 

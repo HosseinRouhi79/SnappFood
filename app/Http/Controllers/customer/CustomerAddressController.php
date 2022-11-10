@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class CustomerAddressController extends Controller
 {
     use HttpResponse;
+
     public function getAllAddresses()
     {
         return AddressResource::collection(
-            Address::where('user_id',Auth::id())->get()
+            Address::where('user_id', Auth::id())->get()
         );
     }
 
@@ -24,25 +25,47 @@ class CustomerAddressController extends Controller
     {
         $request->validated($request->all());
         $address = Address::create([
-            'title'=> $request->title,
-            'address'=> $request->address,
-            'longitude'=> $request->longitude,
-            'latitude'=> $request->latitude,
-            'user_id'=>Auth::id()
+            'title' => $request->title,
+            'address' => $request->address,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
+            'user_id' => Auth::id()
         ]);
-        return $this->success($address,'your address is added successfully');
+        return $this->success($address, 'your address is added successfully');
     }
+
+
+    public function deleteAddress($id)
+    {
+        $address = Address::where('id', $id)->first();
+
+        if (Auth::id() !== $address->user_id) {
+            return $this->error('', 'unauthorized action', 401);
+        }
+        $address->delete();
+        return $this->success('', 'your address is deleted successfully');
+    }
+
+
+    public function deleteAllAddresses($id)
+    {
+        $addresses = Address::where('user_id', $id)->all();
+        if(Auth::id() == $addresses->user_id){
+            $addresses->delete();
+        }
+    }
+
 
     public function setActive($id)
     {
 
-        $address = Address::where('id',$id)->first();
+        $address = Address::where('id', $id)->first();
 
-        if(Auth::id() !== $address->user_id){
-            return $this->error('','unauthorized action',401);
+        if (Auth::id() !== $address->user_id) {
+            return $this->error('', 'unauthorized action', 401);
         }
 
-        $addresses = Address::where('user_id',Auth::id())->get();
+        $addresses = Address::where('user_id', Auth::id())->get();
         foreach ($addresses as $item) {
             $item->is_active = 0;
             $item->save();
@@ -50,7 +73,7 @@ class CustomerAddressController extends Controller
 
         $address->is_active = 1;
         $address->save();
-        return $this->success($address,'current address updated successfully');
+        return $this->success($address, 'current address updated successfully');
     }
 
 }

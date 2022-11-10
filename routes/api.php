@@ -27,7 +27,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('customer/addresses',[\App\Http\Controllers\customer\CustomerAddressController::class,'getAllAddresses']);
     Route::post('customer/addresses',[\App\Http\Controllers\customer\CustomerAddressController::class,'makeAddresses']);
     Route::patch('customer/addresses/{id}',[\App\Http\Controllers\customer\CustomerAddressController::class,'setActive']);
+    Route::delete('customer/addresses/{id}',[\App\Http\Controllers\customer\CustomerAddressController::class,'deleteAddress']);
+    Route::delete('customer/addresses/user/{id}',[\App\Http\Controllers\customer\CustomerAddressController::class,'deleteAllAddresses']);
     Route::patch('customer/update',[\App\Http\Controllers\customer\CustomerUpdateController::class,'updatePersonal']);
+    Route::patch('customer/update/{id}',[\App\Http\Controllers\customer\CustomerUpdateController::class,'updateAddress']);
     Route::get('restaurant/{id}',[\App\Http\Controllers\seller\ApiController::class,'getRestaurantInfo']);
+    Route::get('restaurant/{id}/food',[\App\Http\Controllers\seller\ApiController::class,'getFoodsOfRestaurant']);
     Route::get('restaurant',[\App\Http\Controllers\seller\ApiController::class,'getAllRestaurants']);
 });
