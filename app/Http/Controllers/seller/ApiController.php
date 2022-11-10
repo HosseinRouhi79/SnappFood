@@ -17,4 +17,12 @@ class ApiController extends Controller
             Restaurant::where('id',$id)->get()
         );
     }
+
+    public function getAllRestaurants()
+    {
+        return RestaurantResource::collection(
+         Restaurant::all()
+        );
+    }
+
 }
