@@ -28,7 +28,7 @@ class CustomerAuthController extends Controller
 
         return $this->success([
             'user'=>$user,
-            'token'=>$user->createToken('Api token of'.$user->name)->plainTextToken
+            'token'=>$user->createToken('Api token of '.$user->name)->plainTextToken
         ]);
     }
 
