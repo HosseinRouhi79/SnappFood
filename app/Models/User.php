@@ -59,4 +59,12 @@ class User extends Authenticatable
             return $this->hasMany(Address::class);
         }
     }
+
+    public function order()
+    {
+        if($this->role == UserType::Customer){
+
+            return $this->hasMany(Order::class);
+        }
+    }
 }

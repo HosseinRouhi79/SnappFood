@@ -15,7 +15,26 @@
                     </div>
                 @endif
                 <br>
-
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer Name</th>
+                        <th>Price</th>
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($orders as $order)
+                        <tr>
+                            <td>{{$order->id}}</td>
+                            <td>{{$order->user->name}}</td>
+                            <td>{{$order->price}}</td>
+                            <td>{{$order->count}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

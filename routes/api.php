@@ -34,4 +34,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('restaurant/{id}',[\App\Http\Controllers\seller\ApiController::class,'getRestaurantInfo']);
     Route::get('restaurant/{id}/food',[\App\Http\Controllers\seller\ApiController::class,'getFoodsOfRestaurant']);
     Route::get('restaurant',[\App\Http\Controllers\seller\ApiController::class,'getAllRestaurants']);
+    Route::post('carts/add',[\App\Http\Controllers\customer\CustomerCartController::class,'store']);
+
 });
