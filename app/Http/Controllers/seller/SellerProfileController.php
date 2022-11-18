@@ -22,25 +22,13 @@ class SellerProfileController extends Controller
      */
     public function index()
     {
-        $foodIds = [];
         $user = Auth::user();
-        $foods = DB::table('restaurants')
-            ->join('food', function ($join) {
-                $join->on('restaurants.id', '=', 'food.restaurant_id')
-                    ->where('restaurants.user_id', '=', Auth::id());
-            })->
-            select('food.*')->get();
-//        dd($foods);
-        foreach ($foods as $food){
-            array_push($foodIds,$food->id);
-        }
-//        dd($foodIds);
-        $orders = Order::whereIn('food_id',$foodIds)->get();
+
         if (!Gate::allows('sellerComplete')) {
             abort(403);
         }
 
-        return view('seller.sellerProfile', compact('user','orders'));
+        return view('seller.sellerProfile', compact('user'));
     }
 
     /**

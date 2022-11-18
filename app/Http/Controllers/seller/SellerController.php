@@ -93,10 +93,4 @@ class SellerController extends Controller
 
 
 
-//       $request->validate([
-//           'name'=>'required',
-//           'phone'=>'required',
-//           'address'=>'required',
-//        ]);
-//        return $request->errors()->all();
-//        return response()->json([]);
+
