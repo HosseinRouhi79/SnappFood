@@ -31,9 +31,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('customer/addresses/user/{id}',[\App\Http\Controllers\customer\CustomerAddressController::class,'deleteAllAddresses']);
     Route::patch('customer/update',[\App\Http\Controllers\customer\CustomerUpdateController::class,'updatePersonal']);
     Route::patch('customer/update/{id}',[\App\Http\Controllers\customer\CustomerUpdateController::class,'updateAddress']);
+
+
     Route::get('restaurant/{id}',[\App\Http\Controllers\seller\ApiController::class,'getRestaurantInfo']);
     Route::get('restaurant/{id}/food',[\App\Http\Controllers\seller\ApiController::class,'getFoodsOfRestaurant']);
     Route::get('restaurant',[\App\Http\Controllers\seller\ApiController::class,'getAllRestaurants']);
+
+
     Route::post('carts/add',[\App\Http\Controllers\customer\CustomerCartController::class,'store']);
+    Route::post('carts/submit',[\App\Http\Controllers\customer\CustomerCartController::class,'submit']);
 
 });

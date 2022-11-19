@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FoodOrder extends Model
+class TempFood extends Model
 {
     protected $fillable = [
-      'food_id',
-      'order_id'
+      'user_id','food_id','count'
     ];
     use HasFactory;
 }
