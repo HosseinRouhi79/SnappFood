@@ -23,12 +23,14 @@ class SellerProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $restaurant = Restaurant::where('user_id',Auth::id())->first();
+        $orders = Order::where('restaurant_id',$restaurant->id)->get();
 
         if (!Gate::allows('sellerComplete')) {
             abort(403);
         }
 
-        return view('seller.sellerProfile', compact('user'));
+        return view('seller.sellerProfile', compact('user','orders'));
     }
 
     /**

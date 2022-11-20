@@ -15,7 +15,37 @@
                     </div>
                 @endif
                 <br>
-               
+                <div class="table-wrapper">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User_id</th>
+                            <th>Foods</th>
+                            <th>Status</th>
+                            <th>Setting</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($orders as $order)
+                            <tr>
+                                <td>{{$order->id}}</td>
+                                <td>{{$order->user_id}}</td>
+                                <td>
+                                    @foreach($order->food as $food)
+                                    {{$food->name}} ({{$food->pivot->count}}),
+                                    @endforeach
+                                </td>
+                                <td>{{$order->status}}</td>
+                                <td>
+                                    <a href="" class="btn btn-success">Accept</a>
+                                    <a href="" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

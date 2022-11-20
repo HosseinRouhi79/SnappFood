@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //public
 Route::post('customer/register',[\App\Http\Controllers\customer\CustomerAuthController::class,'register']);
 Route::post('customer/login',[\App\Http\Controllers\customer\CustomerAuthController::class,'login']);
+Route::get('carts/test',[\App\Http\Controllers\customer\CustomerCartController::class,'test']);
 
 //protected
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -39,6 +40,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::post('carts/add',[\App\Http\Controllers\customer\CustomerCartController::class,'store']);
+    Route::patch('carts/add',[\App\Http\Controllers\customer\CustomerCartController::class,'updateCart']);
+    Route::get('carts',[\App\Http\Controllers\customer\CustomerCartController::class,'getCart']);
     Route::post('carts/submit',[\App\Http\Controllers\customer\CustomerCartController::class,'submit']);
 
 });

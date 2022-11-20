@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('food_order', function (Blueprint $table) {
 
-//            $table->integer('count');
+            $table->integer('count');
             $table->foreignId('food_id')
                 ->constrained()->cascadeOnDelete();
 
