@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -20,29 +19,18 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>User_id</th>
-                            <th>Foods</th>
-                            <th>Status</th>
-                            <th>Setting</th>
+                            <th>User_name</th>
+                            <th>Address</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($orders as $order)
                             <tr>
-                                <td><a href="/seller/profile/{{$order->id}}">{{$order->id}}</a></td>
-                                <td>{{$order->user_id}}</td>
+                                <td>{{$order->id}}</td>
+                                <td>{{$order->user->name}}</td>
                                 <td>
-                                    @foreach($order->food as $food)
-                                    {{$food->name}} (Num: {{$food->pivot->count}}, Price: {{$food->price*$food->pivot->count}})<br>
-                                    @endforeach
-                                </td>
-                                <td>{{$order->status}}</td>
-                                <td>
-                                    <a href="" class="btn btn-success">Accept</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                   {{$address->address}}
                                 </td>
                             </tr>
-                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -50,4 +38,5 @@
         </div>
     </div>
 @endsection
+
 

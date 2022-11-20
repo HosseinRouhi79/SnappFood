@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\seller;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Food;
 use App\Models\FoodType;
 use App\Models\Order;
 use App\Models\Restaurant;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -48,6 +50,19 @@ class SellerProfileController extends Controller
         return view('seller.sellerFood', compact('user', 'foods'));
     }
 
+
+    public function show($id)
+    {
+        $user = Auth::user();
+        $order = Order::where('id',$id)->first();
+        $id = $order->user_id;
+        $address = Address::where([
+            ['user_id','=',$id],
+            ['is_active','=',1]
+        ])->first();
+        Gate::allows('isSeller') ? Response::allow() : abort(403);
+        return view('seller.customerDetail',compact('order','address','user'));
+    }
     /**
      * Store a newly created resource in storage.
      *
