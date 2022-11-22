@@ -29,4 +29,5 @@ Route::post('/seller', [\App\Http\Controllers\seller\SellerController::class, 's
 Route::resource('/admin/restaurantType',\App\Http\Controllers\admin\RestaurantTypeController::class);
 Route::resource('/admin/foodType',\App\Http\Controllers\admin\FoodTypeController::class);
 Route::resource('/seller/profile',\App\Http\Controllers\seller\SellerProfileController::class)->middleware('can:isSeller');
+Route::get('/email',[\App\Http\Controllers\EmailController::class,'sendEmail']);
 

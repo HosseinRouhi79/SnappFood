@@ -5,6 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CartRequest;
+use App\Jobs\CustomerJob;
 use App\Models\Food;
 use App\Models\Order;
 use App\Models\Restaurant;
@@ -57,11 +58,20 @@ class CustomerCartController extends Controller
         foreach (array_combine($this->array, $this->array2) as $foodId => $count) {
             $order->food()->attach($foodId, ['count' => $count]);
         }
+
+        //Send Email After Submit The Cart To User
+        $order2 = Order::where('user_id',Auth::id())->first();
+
+        dispatch(new CustomerJob($order2));
+
+
+        //Delete The Foods From Temp Table
         $deleteTempFoods = TempFood::where('user_id',Auth::id())->get();
         $deleteTempFoods->each(function ($item){
             $item->delete();
         });
         unset($this->array);
+
     }
 
     public function getCart()
