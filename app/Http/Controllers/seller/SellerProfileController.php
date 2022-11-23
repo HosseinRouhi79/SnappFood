@@ -166,4 +166,5 @@ class SellerProfileController extends Controller
         $food->delete();
         return redirect('/seller/profile');
     }
+
 }

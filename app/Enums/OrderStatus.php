@@ -11,6 +11,10 @@ use BenSampo\Enum\Enum;
  */
 final class OrderStatus extends Enum
 {
-    const NOT_ACTIVE = 0;
+    const DONE = 0;
     const ACTIVE = 1;
+    const PREPARING = 2;
+    const SENDING = 3;
+    const DELETED = 4;
+
 }
