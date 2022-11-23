@@ -30,5 +30,6 @@ Route::resource('/admin/restaurantType',\App\Http\Controllers\admin\RestaurantTy
 Route::resource('/admin/foodType',\App\Http\Controllers\admin\FoodTypeController::class);
 Route::resource('/seller/profile',\App\Http\Controllers\seller\SellerProfileController::class)->middleware('can:isSeller');
 Route::post('/seller/profile/prepare/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'changeStatus']);
+Route::post('/seller/profile/send/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'sendStatus']);
 Route::get('/email',[\App\Http\Controllers\EmailController::class,'sendEmail']);
 
