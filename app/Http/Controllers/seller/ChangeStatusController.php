@@ -14,12 +14,13 @@ class ChangeStatusController extends Controller
 {
     public function changeStatus($id)
     {
-        $user = Auth::user();
-        $restaurant = Restaurant::where('user_id',Auth::id())->first();
-        $orders = Order::where('restaurant_id',$restaurant->id)->get();
         $order = Order::where('id',$id)->first();
         $order->status = OrderStatus::PREPARING;
         $order->save();
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id',Auth::id())->first();
+        $orders = Order::where('restaurant_id',$restaurant->id)->get();
+
 
         //dispatch job
         dispatch(new StatusJob($order));
