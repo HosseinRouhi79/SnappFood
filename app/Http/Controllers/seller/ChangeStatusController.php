@@ -4,6 +4,7 @@ namespace App\Http\Controllers\seller;
 
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
+use App\Jobs\DoneStatusJob;
 use App\Jobs\SendStatusJob;
 use App\Jobs\StatusJob;
 use App\Models\Order;
@@ -42,6 +43,22 @@ class ChangeStatusController extends Controller
 
         //dispatch job
         dispatch(new SendStatusJob($order));
+
+        return view('seller.sellerProfile',compact('user','orders'));
+
+    }
+
+    public function doneStatus($id)
+    {
+        $order = Order::where('id',$id)->first();
+        $order->status = OrderStatus::DONE;
+        $order->save();
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id',Auth::id())->first();
+        $orders = Order::where('restaurant_id',$restaurant->id)->get();
+
+        //dispatch job
+        dispatch(new DoneStatusJob($order));
 
         return view('seller.sellerProfile',compact('user','orders'));
 
