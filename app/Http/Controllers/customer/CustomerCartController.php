@@ -5,6 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CartRequest;
+use App\Http\Resources\OrderResource;
 use App\Jobs\CustomerJob;
 use App\Models\Food;
 use App\Models\Order;
@@ -92,10 +93,10 @@ class CustomerCartController extends Controller
 
     public function getAllCart()
     {
-        $orders = Order::all();
-        return $this->success($orders->each(function ($item){
-            return $item->food;
-        }));
+        return OrderResource::collection(
+            Order::all()
+        );
+
 
     }
 
