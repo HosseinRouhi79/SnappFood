@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //public
 Route::post('customer/register',[\App\Http\Controllers\customer\CustomerAuthController::class,'register']);
 Route::post('customer/login',[\App\Http\Controllers\customer\CustomerAuthController::class,'login']);
+Route::get('allcarts',[\App\Http\Controllers\customer\CustomerCartController::class,'getAllCart']);
 Route::get('carts/test',[\App\Http\Controllers\customer\CustomerCartController::class,'test']);
 
 //protected

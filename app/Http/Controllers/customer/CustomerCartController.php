@@ -90,6 +90,15 @@ class CustomerCartController extends Controller
         return $this->success($tempFood,'cart is updated successfully');
     }
 
+    public function getAllCart()
+    {
+        $orders = Order::all();
+        return $this->success($orders->each(function ($item){
+            return $item->food;
+        }));
+
+    }
+
     public function test()
     {
         dd(Order::first()->food);
