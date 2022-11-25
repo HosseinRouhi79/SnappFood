@@ -44,5 +44,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::patch('carts/add',[\App\Http\Controllers\customer\CustomerCartController::class,'updateCart']);
     Route::get('carts',[\App\Http\Controllers\customer\CustomerCartController::class,'getCart']);
     Route::post('carts/submit',[\App\Http\Controllers\customer\CustomerCartController::class,'submit']);
+    Route::post('carts/pay/{id}',[\App\Http\Controllers\customer\CustomerCartController::class,'pay']);
 
 });

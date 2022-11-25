@@ -100,6 +100,12 @@ class CustomerCartController extends Controller
 
     }
 
+    public function pay($id)
+    {
+        $order = Order::where('id',$id)->first();
+        return $this->success($order,'you payed the cart');
+    }
+
     public function test()
     {
         dd(Order::first()->food);
