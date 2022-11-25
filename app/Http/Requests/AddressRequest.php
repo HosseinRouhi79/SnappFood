@@ -26,8 +26,8 @@ class AddressRequest extends FormRequest
         return [
             'title'=>['required','max:255'],
             'address'=>['required'],
-            'longitude'=>['required'],
-            'latitude'=>['required']
+            'longitude'=>['required|numeric'],
+            'latitude'=>['required|numeric']
         ];
     }
 }
