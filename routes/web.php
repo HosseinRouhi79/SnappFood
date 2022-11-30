@@ -32,5 +32,6 @@ Route::resource('/seller/profile',\App\Http\Controllers\seller\SellerProfileCont
 Route::post('/seller/profile/prepare/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'changeStatus']);
 Route::post('/seller/profile/send/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'sendStatus']);
 Route::post('/seller/profile/done/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'doneStatus']);
+Route::post('/seller/profile/submit/{id}',[\App\Http\Controllers\comment\CommentStatusController::class,'confirm']);
 Route::get('/email',[\App\Http\Controllers\EmailController::class,'sendEmail']);
 

@@ -22,6 +22,7 @@
                             <th>User_name</th>
                             <th>Address</th>
                             <th>Comment</th>
+                            <th>Setting</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,7 +37,22 @@
                                 @else
                                     <td style="color: red">No Comment</td>
                                 @endif
-
+                                <td>
+                                    <div class="d-flex gap-2 mt-3">
+                                    <form action="/seller/profile/submit/{{$order->id}}" method="post">
+                                        @csrf
+                                    <button class="btn btn-outline-success">
+                                        Submit
+                                    </button>
+                                    </form>
+                                    <form action="/seller/profile/deleteAdmin/{{$order->id}}" method="post">
+                                        @csrf
+                                        <button class="btn btn-outline-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
