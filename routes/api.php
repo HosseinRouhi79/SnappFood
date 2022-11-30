@@ -46,4 +46,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('carts/submit',[\App\Http\Controllers\customer\CustomerCartController::class,'submit']);
     Route::post('carts/pay/{id}',[\App\Http\Controllers\customer\CustomerCartController::class,'pay']);
 
+
+    Route::post('comments',[\App\Http\Controllers\comment\CommentController::class,'post']);
+
 });
