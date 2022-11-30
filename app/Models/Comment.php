@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'author','order_id','content','user_id','restaurant_id','score'
+        'author','order_id','content','user_id','restaurant_id','score','status'
     ];
 
     public function order()
