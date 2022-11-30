@@ -21,6 +21,7 @@
                             <th>ID</th>
                             <th>User_name</th>
                             <th>Address</th>
+                            <th>Comment</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,12 @@
                                 <td>
                                    {{$address->address}}
                                 </td>
+                                @if(isset($comment))
+                                <td style="color: darkblue">{{$comment->content}}</td>
+                                @else
+                                    <td style="color: red">No Comment</td>
+                                @endif
+
                             </tr>
                         </tbody>
                     </table>

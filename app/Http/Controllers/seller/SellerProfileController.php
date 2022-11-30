@@ -4,6 +4,7 @@ namespace App\Http\Controllers\seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Comment;
 use App\Models\Food;
 use App\Models\FoodType;
 use App\Models\Order;
@@ -56,12 +57,13 @@ class SellerProfileController extends Controller
         $user = Auth::user();
         $order = Order::where('id',$id)->first();
         $id = $order->user_id;
+        $comment = Comment::where('order_id',$order->id)->first();
         $address = Address::where([
             ['user_id','=',$id],
             ['is_active','=',1]
         ])->first();
         Gate::allows('isSeller') ? Response::allow() : abort(403);
-        return view('seller.customerDetail',compact('order','address','user'));
+        return view('seller.customerDetail',compact('order','address','user','comment'));
     }
     /**
      * Store a newly created resource in storage.
