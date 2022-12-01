@@ -29,4 +29,20 @@ class CommentStatusController extends Controller
         $comment->save();
         return view('seller.customerDetail',compact('user','address','order','comment'));
     }
+
+    public function toAdmin($id)
+    {
+        $user = Auth::user();
+        $order = Order::where('id',$id)->first();
+        $id = $order->user_id;
+        $address = Address::where([
+            ['user_id','=',$id],
+            ['is_active','=',1]
+        ])->first();
+        $comment = Comment::where('order_id',$order->id)->first();
+        Gate::allows('isSeller') ? Response::allow() : abort(403);
+        $comment->status = CommentStatus::TO_ADMIN;
+        $comment->save();
+        return view('seller.customerDetail',compact('user','address','order','comment'));
+    }
 }

@@ -13,4 +13,5 @@ final class CommentStatus extends Enum
 {
     const NOT_CONFIRMED = 0;
     const CONFIRMED = 1;
+    const TO_ADMIN = 2;
 }

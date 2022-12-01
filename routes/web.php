@@ -33,5 +33,6 @@ Route::post('/seller/profile/prepare/{id}',[\App\Http\Controllers\seller\ChangeS
 Route::post('/seller/profile/send/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'sendStatus']);
 Route::post('/seller/profile/done/{id}',[\App\Http\Controllers\seller\ChangeStatusController::class,'doneStatus']);
 Route::post('/seller/profile/submit/{id}',[\App\Http\Controllers\comment\CommentStatusController::class,'confirm']);
+Route::post('/seller/profile/deleteAdmin/{id}',[\App\Http\Controllers\comment\CommentStatusController::class,'toAdmin']);
 Route::get('/email',[\App\Http\Controllers\EmailController::class,'sendEmail']);
 
