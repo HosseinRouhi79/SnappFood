@@ -14,7 +14,7 @@
                     </div>
                 @endif
                 <br>
-                <h4 class="mb-3" style="color: red">Number of all orders: {{$orders->count()}}</h4>
+                <a href="/seller/profile/excel" class="mb-3 btn btn-outline-success">Number of all orders: {{$orders->count()}}</a>
                 <div class="table-wrapper">
                     <table class="table table-bordered">
                         <thead>
