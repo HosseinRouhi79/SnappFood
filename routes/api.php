@@ -49,5 +49,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::post('comments',[\App\Http\Controllers\comment\CommentController::class,'post']);
+    Route::get('bestLocation',[\App\Http\Controllers\customer\CustomerLocationController::class,'find']);
 
 });
