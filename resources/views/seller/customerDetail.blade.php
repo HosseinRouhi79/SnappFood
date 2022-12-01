@@ -41,16 +41,19 @@
                                     <div class="d-flex gap-2 mt-3">
                                     <form action="/seller/profile/submit/{{$order->id}}" method="post">
                                         @csrf
-                                    <button class="btn btn-outline-success">
+                                    <button class="btn btn-outline-success btn-sm">
                                         Submit
                                     </button>
                                     </form>
                                     <form action="/seller/profile/deleteAdmin/{{$order->id}}" method="post">
                                         @csrf
-                                        <button class="btn btn-outline-danger">
+                                        <button class="btn btn-outline-danger btn-sm">
                                             Delete
                                         </button>
                                     </form>
+                                            <a href="/seller/profile/response/{{$order->id}}" class="btn btn-outline-warning btn-sm">
+                                                Response
+                                            </a>
                                     </div>
                                 </td>
                             </tr>
