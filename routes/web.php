@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [\App\Http\Controllers\FirstPageController::class, 'index'])->name('admin');
+Route::get('/admin/comments', [\App\Http\Controllers\admin\AdminCommentController::class,'index']);
+Route::get('/admin/comments/show/{id}', [\App\Http\Controllers\admin\AdminCommentController::class,'showComment']);
 Route::get('/seller', [\App\Http\Controllers\FirstPageController::class, 'sellerForm'])->name('sellerForm');
 Route::get('/seller/profile/show/{slug}', [\App\Http\Controllers\seller\SellerController::class, 'setting']);
 Route::get('/seller/profile/editProfile/{id}', [\App\Http\Controllers\seller\SellerController::class, 'editProfile']);
