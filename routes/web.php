@@ -25,6 +25,8 @@ Route::get('/admin/comments', [\App\Http\Controllers\admin\AdminCommentControlle
 Route::get('/admin/comments/show/{id}', [\App\Http\Controllers\admin\AdminCommentController::class,'showComment']);
 Route::delete('/admin/comment/delete/{id}', [\App\Http\Controllers\admin\AdminCommentController::class,'deleteComment']);
 Route::get('/seller', [\App\Http\Controllers\FirstPageController::class, 'sellerForm'])->name('sellerForm');
+Route::get('/seller/profile/comments', [\App\Http\Controllers\seller\SellerCommentController::class,'index']);
+Route::post('/seller/profile/comments/filter', [\App\Http\Controllers\seller\SellerCommentController::class,'search']);
 Route::get('/seller/profile/show/{slug}', [\App\Http\Controllers\seller\SellerController::class, 'setting']);
 Route::get('/seller/profile/response/{id}', [\App\Http\Controllers\seller\SellerResponseController::class,'create']);
 Route::post('/seller/profile/responseSubmit/{id}', [\App\Http\Controllers\seller\SellerResponseController::class,'store']);
