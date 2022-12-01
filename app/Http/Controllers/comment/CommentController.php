@@ -44,9 +44,17 @@ class CommentController extends Controller
                  ->each(function ($food) use ($comment){
                      $this->foods[] = ['name'=>$food->name ,'comment'=>$comment->content, 'customer name'=>$comment->user->name];});
         });
+
+        if(isset($request->restaurant_id)){
+            $comments = Comment::where('restaurant_id',$request->restaurant_id)->get();
+            return $comments;
+        }
         if(!isset($this->foods)){
             return $this->error('','No Comment For This Food',404);
         }
         return $this->foods;
+
+
+
     }
 }
