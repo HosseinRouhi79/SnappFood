@@ -27,6 +27,7 @@
                         </thead>
                         <tbody>
                         @foreach($orders as $order)
+                            @if($order->status != 0)
                             <tr>
                                 <td><a href="/seller/profile/{{$order->id}}">{{$order->id}}</a></td>
                                 <td>{{$order->user_id}}</td>
@@ -83,6 +84,7 @@
                                 </td>
 
                             </tr>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
