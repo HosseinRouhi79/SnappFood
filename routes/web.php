@@ -29,6 +29,9 @@ Route::get('/seller/profile/comments', [\App\Http\Controllers\seller\SellerComme
 Route::post('/seller/profile/comments/filter', [\App\Http\Controllers\seller\SellerCommentController::class,'search']);
 Route::get('/seller/profile/reports', [\App\Http\Controllers\seller\ReportController::class,'index']);
 Route::get('/seller/profile/excel/', [\App\Http\Controllers\seller\ReportController::class, 'export']);
+
+Route::post('/seller/profile/report/filterDay', [\App\Http\Controllers\seller\ReportController::class, 'filterDay']);
+
 Route::get('/seller/profile/show/{slug}', [\App\Http\Controllers\seller\SellerController::class, 'setting']);
 Route::get('/seller/profile/response/{id}', [\App\Http\Controllers\seller\SellerResponseController::class,'create']);
 Route::post('/seller/profile/responseSubmit/{id}', [\App\Http\Controllers\seller\SellerResponseController::class,'store']);

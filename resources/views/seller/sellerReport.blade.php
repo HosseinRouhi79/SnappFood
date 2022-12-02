@@ -15,6 +15,19 @@
                 @endif
                 <br>
                 <a href="/seller/profile/excel" class="mb-3 btn btn-outline-success">Number of all orders: {{$orders->count()}}</a>
+                <form action="/seller/profile/report/filterDay" method="post">
+                    @csrf
+                <div class="input-group mb-3 justify-content-center">
+                    <select style="width:200px;" class="custom-select" id="inputGroupSelect04" name="filterDay">
+                        <option selected>Choose...</option>
+                        <option value="1">yesterday</option>
+                        <option value="2">today</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Filter</button>
+                    </div>
+                </div>
+                </form>
                 <div class="table-wrapper">
                     <table class="table table-bordered">
                         <thead>
