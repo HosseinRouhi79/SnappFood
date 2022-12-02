@@ -34,6 +34,7 @@ class ReportController extends Controller
     public function filterDay(Request $request)
     {
         if($request->input('filterDay')=='1'){
+            $user = Auth::user();
             $yestreday = Carbon::yesterday()->timestamp;
             $today = Carbon::today()->timestamp;
 
@@ -44,9 +45,11 @@ class ReportController extends Controller
                 $this->ordersFilter[] = $order;
                }
             });
-            return $this->ordersFilter;
+            $orders = $this->ordersFilter;
+            return view('seller.filterOrders',compact('orders','user'));
         }
         elseif($request->input('filterDay')=='2'){
+            $user = Auth::user();
             $today = Carbon::today()->timestamp;
             $now = \Carbon\Carbon::now()->timestamp;
 
@@ -57,7 +60,8 @@ class ReportController extends Controller
                     $this->ordersFilter1[] = $order;
                 }
             });
-            return $this->ordersFilter1;
+            $orders = $this->ordersFilter1;
+            return view('seller.filterOrders',compact('orders','user'));
         }
 
 
