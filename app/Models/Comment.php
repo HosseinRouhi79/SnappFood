@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Comment
@@ -40,8 +41,10 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
     protected $fillable = [
-        'author','order_id','content','user_id','restaurant_id','score','status'
+        'author','order_id','content','user_id','restaurant_id','score','status','deleted_at'
     ];
 
     public function order()
