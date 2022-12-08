@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\comment;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\GetCommentRequest;
 use App\Models\Comment;
 use App\Models\Order;
@@ -15,7 +16,7 @@ class CommentController extends Controller
 {
     use HttpResponse;
     public array $foods;
-    public function post(Request $request)
+    public function post(CommentRequest $request)
     {
         $cart = Order::where('user_id',Auth::id())->first();
 //        dd($request->cart_id);
