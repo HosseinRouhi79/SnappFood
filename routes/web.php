@@ -48,7 +48,8 @@ Route::post('/seller/profile/submit/{id}',[\App\Http\Controllers\comment\Comment
 Route::post('/seller/profile/deleteAdmin/{id}',[\App\Http\Controllers\comment\CommentStatusController::class,'toAdmin']);
 Route::get('/email',[\App\Http\Controllers\EmailController::class,'sendEmail']);
 
-Route::get('/AAA',function (){
-    return \App\Models\Comment::where('id',7)->withTrashed()->get();
-});
+
+Route::get('/admin/banners',[\App\Http\Controllers\BannerController::class,'index']);
+Route::get('/admin/banners/create',[\App\Http\Controllers\BannerController::class,'create']);
+Route::post('/admin/banners/store',[\App\Http\Controllers\BannerController::class,'store']);
 
