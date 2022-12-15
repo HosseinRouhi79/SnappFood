@@ -27,11 +27,11 @@ class SellerProfileController extends Controller
     {
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id',Auth::id())->first();
-        $orders = Order::where('restaurant_id',$restaurant->id)->get();
-
         if (!Gate::allows('sellerComplete')) {
             abort(403);
         }
+        $orders = Order::where('restaurant_id',$restaurant->id)->get();
+
 
         return view('seller.sellerProfile', compact('user','orders'));
     }
