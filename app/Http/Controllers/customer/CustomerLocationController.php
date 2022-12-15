@@ -15,7 +15,6 @@ class CustomerLocationController extends Controller
     public array $bestRestaurant;
 
 
-
     public function find()
     {
 
@@ -23,38 +22,9 @@ class CustomerLocationController extends Controller
         $address = Address::where([['user_id', $user->id], ['is_active', '=', 1]])->first();
         $lat = $address->latitude;
         $lng = $address->longitude;
-        $restaurants = Restaurant::all();
-        $restaurants->each(function ($restaurant) {
-            $this->array[] = explode(',', $restaurant->latlng);
-            foreach ($this->array as $items){
-                foreach ($items as $item) {
-                    $result = substr($item, 6);
-                    $this->location[] = $result;
-                }
-            }
-        });
-        $finalLocation = array_unique($this->location);
-        $finalLocation2 = array_map(function ($location) use ($finalLocation){
-            if(array_search($location,$finalLocation)%2 == 0){
-                return substr($location,1);
-            }
-                return substr($location,0,17);
-            },$finalLocation);
-        $finalLocationRests = array_chunk($finalLocation2,2);
+        $restaurants = Restaurant::whereBetween('lat',[$lat-30,$lat-10])->whereBetween('lng',[$lng-5,$lng+5])->get();
+        return $restaurants;
 
-        foreach ($finalLocationRests as $finalLocationRest){
-            if(($lat-25 <= $finalLocationRest[0]) && ($finalLocationRest[0] <= $lat+5)){
-               $this->bestRestaurant[] = $finalLocationRest;
-            }
-        }
-            return $this->bestRestaurant;
 
-//        return response()->json([
-//            'location' => [
-//                'lat' => $lat,
-//                'lng' => $lng
-//            ]]);
     }
-
-
 }
