@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     protected $fillable = [
-      'title','address','longitude','latitude','user_id'
+      'title','address','lng','lat','user_id','start','end','score'
     ];
 
     public function user()

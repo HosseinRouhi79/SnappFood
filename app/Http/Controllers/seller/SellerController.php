@@ -31,6 +31,9 @@ class SellerController extends Controller
         $data['address'] = $_POST['address'];
         $data['restaurant_type'] = $_POST['restaurant_type'];
         $data['location'] = $_POST['location'];
+        $data['start'] = $_POST['start'];
+        $data['end'] = $_POST['end'];
+//        var_dump(json_decode($_POST['location'])->lat);
 
 
 //
@@ -39,7 +42,10 @@ class SellerController extends Controller
         $restaurant->phone = $data['phone'];
         $restaurant->address = $data['address'];
         $restaurant->restaurant_type_id = $data['restaurant_type'];
-        $restaurant->latlng = $data['location'];
+        $restaurant->lat = json_decode($data['location'])->lat;
+        $restaurant->lng = json_decode($data['location'])->lng;
+        $restaurant->start = $data['start'];
+        $restaurant->end = $data['end'];
         $restaurant->user_id = Auth::id();
         $_SESSION['user_id'] = Auth::id();
         $restaurant->save();

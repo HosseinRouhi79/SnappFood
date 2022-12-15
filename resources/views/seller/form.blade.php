@@ -28,6 +28,15 @@
                             <label for="address">Address</label>
                         </div><input type="text" class="form-control mb-3" name="address" id="address" placeholder="Enter restaurant phone">
 
+                        <div class="text-start">
+                            <label for="start">Start</label>
+                        </div><input type="time" class="form-control mb-3" name="start" id="start" placeholder="Enter start time">
+
+                        <div class="text-start">
+                            <label for="end">End</label>
+                        </div><input type="time" class="form-control mb-3" name="end" id="end" placeholder="Enter end time">
+
+
                         <select id="restaurant_type" class="form-select mt-4 mb-3" aria-label="Default select example" name="restaurant_type">
                             <option style="color: black;background-color: #edf2f7" selected>Select Restaurant Type</option>
                             @foreach($restaurants as $restaurant)
@@ -76,6 +85,8 @@
                                         data: {
                                             location: JSON.stringify(loc),
                                             name: $("#name").val(),
+                                            start: $("#start").val(),
+                                            end: $("#end").val(),
                                             phone: $("#phone").val(),
                                             address: $("#address").val(),
                                             restaurant_type: $("#restaurant_type").val(),
