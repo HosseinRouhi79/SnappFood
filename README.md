@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About App
 
 A sample of snapp food that created by laravel.
 We have three roles:admin, seller (SSG) and customer(API)
