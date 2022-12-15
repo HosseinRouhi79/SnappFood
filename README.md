@@ -14,7 +14,7 @@ We have three roles:admin, seller (SSG) and customer(API)
 
 ## Installation
 
-composer install
+<pre>composer install</pre>
 cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
