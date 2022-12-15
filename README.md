@@ -26,6 +26,11 @@ email: admin@example.com
 pass: 12345678
 
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Packages
+<pre>
+bensampo/laravel-enum
+laravel/sanctum
+laravel/ui
+maatwebsite/excel
+barryvdh/laravel-ide-helper
+</pre>
