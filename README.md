@@ -14,11 +14,11 @@ We have three roles:admin, seller (SSG) and customer(API)
 
 ## Installation
 
-<pre>composer install</pre>
-<pre>cp .env.example .env</pre>
-<pre>php artisan key:generate</pre>
-<pre>php artisan migrate --seed</pre>
-<pre>php artisan serve</pre>
+<pre>composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve</pre>
 
 ## Admin information for login
 
